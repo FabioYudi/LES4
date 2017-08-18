@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>LES - SEGUNDA</title>
+    </h:head>
+    <h:body>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="60" resizable="60">
+
+                <p:menubar style="background-color: #708090" >
+                    <p:menuitem value="Cadastrar" url="http://www.google.com" target="_Blank"
+                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                border-width:3px "/>
+                    <p:menuitem value="Pesquisar" url="http://www.hotmail.com" 
+                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                border-width:3px "/>
+                    <p:menuitem value="Excluir" url="http://mail.yahoo.com" 
+                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                border-width:3px "/>
+                </p:menubar>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" size="50">
+                <h:outputText value="Bottom content." />
+            </p:layoutUnit>
+            <p:layoutUnit position="west" size="200" >
+                <h:outputText value="Left content" />
+            </p:layoutUnit>
+            <p:layoutUnit position="east" size="200">
+                <h:outputText value="Right Content" />
+            </p:layoutUnit>
+
+
+
+            <p:layoutUnit position="center">
+                 <h:form>
+                        <h:panelGrid columns="10" style="margin-bottom: 5px" >
+                            <p:outputLabel id="lbnome" value="Nome:  "/><!-- Nome !-->
+                            <p:inputText id="nome" required="true" maxlength="25" size="30"/> <!-- Nome !-->
+                            <p:spacer width="5"/>
+                            <p:outputPanel><!-- Idade !-->
+                                <p:outputLabel id="lbidade" value="Idade: " style=""/>
+                                <p:inputText id="idade"  size="1" required="true" />
+                            </p:outputPanel><!-- Idade !-->
+                            <p:spacer width="5"/>
+                            <p:outputPanel> <!-- CPF e RG !-->
+                                <p:outputLabel id="lbcpf" value="CPF: "/>
+                                <p:inputMask id="cpf"  size="14" required="true" mask="999.999.999-99"/>
+                                <p:spacer width="10"/>
+                                <p:outputLabel id="lbrg" value="RG: "/>
+                                <p:inputMask id="rg"  size="8" required="true" mask="999.999.99-9"/>
+                            </p:outputPanel><!-- CPF e RG !-->
+                        </h:panelGrid>
+                    
+
+                        <h:panelGrid columns="6" style="margin-bottom: 5px" >
+                            <p:outputLabel id="lbendereco" value="Endereço: "/> <!-- Endereço !-->
+                            <p:inputText id="endereco" required="true" maxlength="50" size="60" />  <!-- Endereço !-->
+                            <p:spacer width="5"/>
+                            <p:outputPanel> <!-- numero !-->
+                                <p:outputLabel id="lbnumero" value="Nº: " style=""/>
+                                <p:inputText id="num"  size="3" required="true" maxlength="6" />
+                            </p:outputPanel> <!-- numero !-->
+                        </h:panelGrid>
+
+                        <h:panelGrid columns="6" style="border-bottom: 5px"><!-- CIDADE E ESTADO !-->
+                            <p:outputLabel id="lbcidade" value="Cidade: "/>
+                            <p:inputText id="cidade" required="true" size="30"/>  
+                            <p:spacer width="5"/>
+                            <p:outputPanel>
+                                <p:outputLabel id="lbestado" value="Estado: "/>
+                                <p:autoComplete value="#{bean.text}" completeMethod="#{bean.complete}" />
+                            </p:outputPanel>
+                        </h:panelGrid><!-- CIDADE E ESTADO !-->
+
+                   
+                        <h:panelGrid columns="2" cellpadding="10">
+
+                            <h:outputText value="After a break of more than 15 years..." />
+                        </h:panelGrid>
+                    
+
+               
+
+
+
+
+
+                </h:form>
+
+
+                <h:panelGrid columns="2" style="margin-bottom: 5px" >
+
+                </h:panelGrid>
+
+
+                <p:button value="Enviar" id="enviar" onclick="alerta()"/>
+
+
+
+
+
+            </p:layoutUnit>
+        </p:layout>
+
+
+
+    </h:body>
+</html>
+
+<a href="../../../../../Desktop/index.txt"></a>
