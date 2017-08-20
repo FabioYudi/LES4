@@ -8,8 +8,10 @@ package com.entity;
 import com.query.ClienteDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -18,6 +20,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean(name = "cliente")
 @SessionScoped
 public class Cliente {
+
     private String id;
     private String nome;
     private int idade;
@@ -28,7 +31,22 @@ public class Cliente {
     private String cidade;
     private String estado;
 
-    
+    public Cliente() {
+    }
+
+    public Cliente(String id, String nome, int idade, String cpf, String rg, String rua,
+            int num_rua, String cidade, String estado) {
+        this.id = id;
+        this.nome = nome;
+        this.idade = idade;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.rua = rua;
+        this.num_rua = num_rua;
+        this.cidade = cidade;
+        this.estado = estado;
+    }
+
     public String getId() {
         return id;
     }
@@ -101,26 +119,25 @@ public class Cliente {
         this.estado = estado;
     }
 
-    public void adicionar()
-    {
+    public void adicionar() {
         ClienteDAO cli = new ClienteDAO();
         cli.inserir(this);
-       
-    }       
-    
-    public void buscar()
-    {
+        RequestContext.getCurrentInstance().showMessageInDialog(
+                new FacesMessage(FacesMessage.SEVERITY_INFO, "Cadastro", "Cliente cadastrado com sucesso")
+        );
+    }
+
+    public void buscar() {
         ClienteDAO cli = new ClienteDAO();
         cli.buscar(this);
     }
-    
-    public void deletar()
-    {
-        
+
+    public void deletar() {
+
         ClienteDAO cli = new ClienteDAO();
-        cli.deletar(this);       
+        cli.deletar(this);
     }
-    
+
     public List<String> complete(String query) {
         List<String> results = new ArrayList<String>();
         results.add("São Paulo");
@@ -132,6 +149,4 @@ public class Cliente {
         return results;
     }
 
-
-    
 }

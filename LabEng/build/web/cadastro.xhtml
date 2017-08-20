@@ -13,7 +13,7 @@
             <p:layoutUnit position="north" size="60" resizable="60">
 
                 <p:menubar style="background-color: #708090" >
-                    <p:menuitem value="Cadastrar" url="cadastro.xhtml" target="_Blank"
+                    <p:menuitem value="Cadastrar" url="cadastro.xhtml" target="_self"
                                 style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
                                 border-width:3px "/>
                     <p:menuitem value="Pesquisar" url="listar.xhtml" 
@@ -76,18 +76,6 @@
                                 <p:autoComplete value="#{cliente.estado}" completeMethod="#{cliente.complete}" />
                             </p:outputPanel>
                         </h:panelGrid><!-- CIDADE E ESTADO !-->
-
-                   
-                        <h:panelGrid columns="2" cellpadding="10">
-
-                            <h:outputText value="After a break of more than 15 years..." />
-                        </h:panelGrid>
-                    
-
-               
-
-
-
                 <p:commandButton value="Cadastrar" action="#{cliente.adicionar()}" />
                 <p:commandButton value="Buscar" action="#{cliente.buscar()}" update="@form"></p:commandButton>
                 <p:commandButton value="Deletar" action="#{cliente.deletar()}" update="@form"></p:commandButton>
