@@ -137,4 +137,17 @@ public class ClienteDAO {
         }
 
     }
+    
+    public boolean updateCliente(Cliente cliente){
+        try{
+            Connection conexao = Conexao.getConexao();
+            PreparedStatement ps = conexao.prepareStatement(
+             String.format("UPDATE cliente SET ", "")
+            );
+            return true;
+        }catch(SQLException ex){
+            Conexao.fecharConexao();
+            return false;
+        }
+    }
 }
