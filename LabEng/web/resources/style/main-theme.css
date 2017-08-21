@@ -1,3 +1,9 @@
 body{
     background: #f4f4f4;
+    font-size: 12px;
+}
+.item-grid{
+    float: left;
+    display: inline;
+    width: 59px;
 }

@@ -31,8 +31,7 @@ public class Cliente {
     private String cidade;
     private String estado;
 
-    public Cliente() {
-    }
+    
 
     public Cliente(String id, String nome, int idade, String cpf, String rg, String rua,
             int num_rua, String cidade, String estado) {
@@ -45,6 +44,10 @@ public class Cliente {
         this.num_rua = num_rua;
         this.cidade = cidade;
         this.estado = estado;
+    }
+    
+    public Cliente() {
+        this("","",0,"","","",0,"","");
     }
 
     public String getId() {

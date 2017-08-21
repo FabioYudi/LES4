@@ -63,6 +63,25 @@ public class ClienteDAO {
             Conexao.fecharConexao();
         }
     }
+    
+    public Cliente getClienteById(String id){
+        Cliente cliente = new Cliente();
+        try{
+            Connection conexao = Conexao.getConexao();
+            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM cliente where id = " + id);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                cliente.setId(rs.getInt("id") + "");
+                cliente.setNome(rs.getString("nome"));
+                cliente.setCpf(rs.getString("cpf"));
+            }
+            Conexao.fecharConexao();
+            return cliente;
+        }catch(SQLException ex){
+            Conexao.fecharConexao();
+            return cliente;
+        }
+    }
 
     public void deletar(Cliente cliente) {
         try {
@@ -74,6 +93,20 @@ public class ClienteDAO {
         }
         Conexao.fecharConexao();
 
+    }
+    
+    public boolean deleteById(String id){
+        try {
+            Connection conexao = Conexao.getConexao();
+            PreparedStatement ps = conexao.prepareStatement("DELETE FROM CLIENTE WHERE id = " + id);
+            ps.executeUpdate();
+            Conexao.fecharConexao();
+            return true;
+        } catch (SQLException ex) {
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Conexao.fecharConexao();
+            return false;
+        }
     }
 
     public List<Cliente> selecionar_tudo() {

@@ -9,72 +9,82 @@
         <h:outputStylesheet library="style" name="main-theme.css"/>
     </h:head>
     <h:body>
-        <p:layout fullPage="true">
-            <p:layoutUnit position="north" size="60" resizable="60">
-                <p:menubar style="background-color: #708090" >
-                    <p:menuitem value="Cadastrar" url="cadastro.xhtml" target="_self"
-                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
-                                border-width:3px "/>
-                    <p:menuitem value="Pesquisar" url="listar.xhtml" 
-                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
-                                border-width:3px "/>
-                    <p:menuitem value="Excluir" url="http://mail.yahoo.com" 
-                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
-                                border-width:3px "/>
-                </p:menubar>
-            </p:layoutUnit>
-            <p:layoutUnit position="south" size="50">
-                <h:outputText value="Bottom content." />
-            </p:layoutUnit>
-            <p:layoutUnit position="west" size="100">
-                <h:outputText value="Left content" />
-            </p:layoutUnit>
-            <p:layoutUnit position="center">
-                <h:panelGrid columns="2" style="margin-bottom: 5px" >
-                    <p:dataTable var="cliente" value="#{dtClientes.clientes}">
-                        <p:column headerText="Id">
-                            <h:outputText value="#{cliente.id}"/>
-                        </p:column>
-                        <p:column headerText="Nome">
-                            <h:outputText value="#{cliente.nome}"/>
-                        </p:column>
-                        <p:column headerText="Idade">
-                            <h:outputText value="#{cliente.idade}"/>
-                        </p:column>
-                        <p:column headerText="CPF">
-                            <h:outputText value="#{cliente.cpf}"/>
-                        </p:column>
-                        <p:column headerText="RG">
-                            <h:outputText value="#{cliente.rg}"/>
-                        </p:column>
-                        <p:column headerText="Rua - Num">
-                            <h:outputText value="#{cliente.rua}"/>
-                            <h:outputText value="#{cliente.num_rua}"/>
-                        </p:column>
-                        <p:column headerText="Cidade">
-                            <h:outputText value="#{cliente.cidade}"/>
-                        </p:column>
-                        <p:column headerText="Estado">
-                            <h:outputText value="#{cliente.estado}"/>
-                        </p:column>
-                        <p:column headerText="Ações">
-                            <div>
-                                <h:outputLink value="editar.xhtml">
-                                    <h:outputText value="Editar"/>
-                                    <f:param name="Id" value="#{cliente.id}"/>
-                                </h:outputLink>
-                            </div>
-                            <div>
-                                <h:outputLink value="deletar.xhtml">
-                                    <h:outputText value="Deletar"/>
-                                    <f:param name="Id" value="#{cliente.id}"/>
-                                </h:outputLink>
-                            </div>
-                        </p:column>
-                    </p:dataTable>
-                </h:panelGrid>
-            </p:layoutUnit>
-        </p:layout>
+        <h:form>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="60" resizable="60">
+                    <p:menubar style="background-color: #708090" >
+                        <p:menuitem value="Cadastrar" url="cadastro.xhtml" target="_self"
+                                    style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                    border-width:3px "/>
+                        <p:menuitem value="Pesquisar" url="listar.xhtml" 
+                                    style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                    border-width:3px "/>
+                        <p:menuitem value="Excluir" url="http://mail.yahoo.com" 
+                                    style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                    border-width:3px "/>
+                    </p:menubar>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <h:outputText value="Bottom content." />
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="100">
+                    <h:outputText value="Left content" />
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h:panelGrid columns="2" style="margin-bottom: 5px" >
+                        <p:dataTable var="cliente" value="#{dtClientes.clientes}">
+                            <p:column headerText="Id">
+                                <h:outputText value="#{cliente.id}"/>
+                            </p:column>
+                            <p:column headerText="Nome">
+                                <h:outputText value="#{cliente.nome}"/>
+                            </p:column>
+                            <p:column headerText="Idade">
+                                <h:outputText value="#{cliente.idade}"/>
+                            </p:column>
+                            <p:column headerText="CPF">
+                                <h:outputText value="#{cliente.cpf}"/>
+                            </p:column>
+                            <p:column headerText="RG">
+                                <h:outputText value="#{cliente.rg}"/>
+                            </p:column>
+                            <p:column headerText="Rua - Num">
+                                <h:outputText value="#{cliente.rua}"/>
+                                <h:outputText value="#{cliente.num_rua}"/>
+                            </p:column>
+                            <p:column headerText="Cidade">
+                                <h:outputText value="#{cliente.cidade}"/>
+                            </p:column>
+                            <p:column headerText="Estado">
+                                <h:outputText value="#{cliente.estado}"/>
+                            </p:column>
+                            <p:column>
+                                <div class="item-grid">
+                                    <p:commandButton onclick="loadPage('editar.xhtml?id=' + #{cliente.id})" value="Editar"/>
+                                </div>
+                            </p:column>
+                            <p:column>
+                                <div class="item-grid">
+                                    <p:growl id="message" showDetail="true" />
+                                    <p:commandButton value="Deletar" actionListener="#{dtClientes.deleteCliente(cliente.id)}" update="message">
+                                        <p:confirm header="Deletar Cliente" message="Tem certeza que deseja deletar este cliente?" icon="ui-icon-alert"/>
+                                    </p:commandButton>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
+                                </div>
+                            </p:column>
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
+        <script>
+            function loadPage(url) {
+                window.location = url;
+            }
+        </script>
     </h:body>
 </html>
 
