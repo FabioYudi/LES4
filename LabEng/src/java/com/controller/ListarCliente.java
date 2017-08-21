@@ -6,7 +6,7 @@
 package com.controller;
 
 import com.entity.Cliente;
-import com.query.ClienteDAO;
+import com.persistence.ClienteDAO;
 import java.io.IOException;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;

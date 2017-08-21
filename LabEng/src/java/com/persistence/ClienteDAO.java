@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.query;
+package com.persistence;
 
 import com.entity.Cliente;
 import java.sql.Connection;
@@ -68,12 +68,18 @@ public class ClienteDAO {
         Cliente cliente = new Cliente();
         try{
             Connection conexao = Conexao.getConexao();
-            PreparedStatement ps = conexao.prepareStatement("SELECT * FROM cliente where id = " + id);
+            PreparedStatement ps = conexao.prepareStatement("SELECT id, nome, idade, cpf, rg, rua, num_rua, cidade, estado FROM cliente where id = " + id);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
                 cliente.setId(rs.getInt("id") + "");
                 cliente.setNome(rs.getString("nome"));
+                cliente.setIdade(rs.getInt("idade"));
                 cliente.setCpf(rs.getString("cpf"));
+                cliente.setRg(rs.getString("rg"));
+                cliente.setRua(rs.getString("rua"));
+                cliente.setNum_rua(rs.getInt("num_rua"));
+                cliente.setCidade(rs.getString("cidade"));
+                cliente.setEstado(rs.getString("estado"));
             }
             Conexao.fecharConexao();
             return cliente;
@@ -126,6 +132,7 @@ public class ClienteDAO {
                 cliente.setNum_rua(rs.getInt("num_rua"));
                 cliente.setCidade(rs.getString(("cidade")));
                 cliente.setEstado(rs.getString("estado"));
+                cliente.setIdade(rs.getInt("idade"));
                 clientes.add(cliente);
             }
             Conexao.fecharConexao();
@@ -141,11 +148,19 @@ public class ClienteDAO {
     public boolean updateCliente(Cliente cliente){
         try{
             Connection conexao = Conexao.getConexao();
-            PreparedStatement ps = conexao.prepareStatement(
-             String.format("UPDATE cliente SET ", "")
-            );
-            return true;
+            PreparedStatement ps = conexao.prepareStatement("UPDATE cliente SET nome=?, idade=?, cpf=?, rg=?, rua=?, num_rua=?, cidade=?,estado=? WHERE id=?");
+            ps.setString(1, cliente.getNome());
+            ps.setInt(2, cliente.getIdade());
+            ps.setString(3, cliente.getCpf());
+            ps.setString(4, cliente.getRg());
+            ps.setString(5, cliente.getRua());
+            ps.setInt(6, cliente.getNum_rua());
+            ps.setString(7, cliente.getCidade());
+            ps.setString(8, cliente.getEstado());
+            ps.setInt(9, Integer.parseInt(cliente.getId()));
+            return !ps.execute();
         }catch(SQLException ex){
+            Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
             Conexao.fecharConexao();
             return false;
         }

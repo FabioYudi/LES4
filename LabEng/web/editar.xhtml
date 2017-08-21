@@ -1,13 +1,75 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Editar Cliente</title>
         <h:outputStylesheet library="style" name="main-theme.css"/>
     </h:head>
     <h:body>
-        
+        <h:form>
+            <p:layout fullPage="true">
+                <p:layoutUnit position="north" size="60" resizable="60">
+                    <p:menubar style="background-color: #708090" >
+                        <p:menuitem value="Cadastrar" url="cadastro.xhtml" target="_self"
+                                    style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                    border-width:3px "/>
+                        <p:menuitem value="Visualizar" url="listar.xhtml" 
+                                    style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
+                                    border-width:3px "/>
+                    </p:menubar>
+                </p:layoutUnit>
+                <p:layoutUnit position="south" size="50">
+                    <h:outputText value="Bottom content." />
+                </p:layoutUnit>
+                <p:layoutUnit position="west" size="100">
+                    <h:outputText value="Left content" />
+                </p:layoutUnit>
+                <p:layoutUnit position="center">
+                    <h:panelGrid columns="10" style="margin-bottom: 5px" >
+                        <p:inputText value="#{editarView.cliente.id}" disabled="disabled=" styleClass="hidden"/>
+                        <p:outputLabel id="lbnome" value="Nome:  "/><!-- Nome !-->
+                        <p:inputText id="nome" required="true" maxlength="25" size="30" value="#{editarView.cliente.nome}"/> <!-- Nome !-->
+                        <p:spacer width="5"/>
+                        <p:outputPanel><!-- Idade !-->
+                            <p:outputLabel id="lbidade" value="Idade: " style=""/>
+                            <p:inputText id="idade"  size="1" required="false" value="#{editarView.cliente.idade}"/>
+                        </p:outputPanel><!-- Idade !-->
+                        <p:spacer width="5"/>
+                        <p:outputPanel> <!-- CPF e RG !-->
+                            <p:outputLabel id="lbcpf" value="CPF: "/>
+                            <p:inputMask id="cpf"  size="14" required="false" mask="999.999.999-99" value="#{editarView.cliente.cpf}"/>
+                            <p:spacer width="10"/>
+                            <p:outputLabel id="lbrg" value="RG: "/>
+                            <p:inputMask id="rg"  size="8" required="false" mask="999.999.99-9" value="#{editarView.cliente.rg}"/>
+                        </p:outputPanel><!-- CPF e RG !-->
+                    </h:panelGrid>
+
+
+                    <h:panelGrid columns="6" style="margin-bottom: 5px" >
+                        <p:outputLabel id="lbendereco" value="Endereço: "/> <!-- Endereço !-->
+                        <p:inputText id="endereco" required="false" maxlength="50" size="60" value="#{editarView.cliente.rua}"/>  <!-- Endereço !-->
+                        <p:spacer width="5"/>
+                        <p:outputPanel> <!-- numero !-->
+                            <p:outputLabel id="lbnumero" value="Nº: " style=""/>
+                            <p:inputText id="num"  size="3" required="false" maxlength="6" value="#{editarView.cliente.num_rua}"/>
+                        </p:outputPanel> <!-- numero !-->
+                    </h:panelGrid>
+
+                    <h:panelGrid columns="6" style="border-bottom: 5px"><!-- CIDADE E ESTADO !-->
+                        <p:outputLabel id="lbcidade" value="Cidade: "/>
+                        <p:inputText id="cidade" required="false" size="30" value="#{editarView.cliente.cidade}"/>  
+                        <p:spacer width="5"/>
+                        <p:outputPanel>
+                            <p:outputLabel id="lbestado" value="Estado: "/>
+                            <p:autoComplete value="#{editarView.cliente.estado}" completeMethod="#{editarView.cliente.complete}" />
+                        </p:outputPanel>
+                    </h:panelGrid><!-- CIDADE E ESTADO !-->
+                    <p:commandButton value="Editar" action="#{editarView.editar()}" />
+                </p:layoutUnit>
+            </p:layout>
+        </h:form>
     </h:body>
 </html>
 

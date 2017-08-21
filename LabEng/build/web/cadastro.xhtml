@@ -16,10 +16,7 @@
                     <p:menuitem value="Cadastrar" url="cadastro.xhtml" target="_self"
                                 style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
                                 border-width:3px "/>
-                    <p:menuitem value="Pesquisar" url="listar.xhtml" 
-                                style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
-                                border-width:3px "/>
-                    <p:menuitem value="Excluir" url="http://mail.yahoo.com" 
+                    <p:menuitem value="Visualizar" url="listar.xhtml" 
                                 style="font-family: Arial Black, arial; color: #000000; border-left-color: #3CB371;
                                 border-width:3px "/>
                 </p:menubar>
@@ -37,7 +34,7 @@
 
 
             <p:layoutUnit position="center">
-                 <h:form>
+                 <h:form styleClass="form-cadastro">
                         <h:panelGrid columns="10" style="margin-bottom: 5px" >
                             <p:outputLabel id="lbnome" value="Nome:  "/><!-- Nome !-->
                             <p:inputText id="nome" required="true" maxlength="25" size="30" value="#{cliente.nome}"/> <!-- Nome !-->
@@ -77,10 +74,6 @@
                             </p:outputPanel>
                         </h:panelGrid><!-- CIDADE E ESTADO !-->
                 <p:commandButton value="Cadastrar" action="#{cliente.adicionar()}" />
-                <p:commandButton value="Buscar" action="#{cliente.buscar()}" update="@form"></p:commandButton>
-                <p:commandButton value="Deletar" action="#{cliente.deletar()}" update="@form"></p:commandButton>
-
-
                 </h:form>
                 <h:panelGrid columns="2" style="margin-bottom: 5px" >
                 </h:panelGrid>

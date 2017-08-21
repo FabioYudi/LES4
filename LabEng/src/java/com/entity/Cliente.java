@@ -5,7 +5,7 @@
  */
 package com.entity;
 
-import com.query.ClienteDAO;
+import com.persistence.ClienteDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.application.FacesMessage;

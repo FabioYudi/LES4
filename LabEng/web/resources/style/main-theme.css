@@ -7,3 +7,13 @@ body{
     display: inline;
     width: 59px;
 }
+
+.form-cadastro{
+    background: #f4f4f4 !important;
+}
+
+.form-cadastro div{
+    display: table-cell;
+}
+
+.hidden{display: none;}

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.query;
+package com.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,7 +21,7 @@ public class Conexao  {
     private static Connection conexao;
     private static final String url_conn = "jdbc:postgresql://localhost/banco";
     private static final String user = "postgres";
-    private static final String senha = "123";
+    private static final String senha = "postgres";
 
     public static Connection getConexao() 
     {

@@ -6,7 +6,7 @@
 package com.controller;
 
 import com.entity.Cliente;
-import com.query.ClienteDAO;
+import com.persistence.ClienteDAO;
 import java.util.Map;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
